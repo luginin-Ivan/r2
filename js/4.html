@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<link rel="stylesheet"
+href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-
+beta.2/css/bootstrap.min.css" integrity="sha384-
+PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+crossorigin="anonymous">
+<script src="http://code.jquery.com/jquery-1.5.js"></script>
+</head>
+<style >
+	h2{
+	text-decoration: underline;
+	color:#934BEA;
+	
+	}
+	#send{
+        background-color:#934BEA; 
+        border-color: #934BEA;
+
+	}
+	#articles{
+		background-color:#CCCACE;
+		padding:10px;
+	}
+	.form-control:valid {
+  		border-color: #00FF7F;
+	}
+	div #n2{
+		border:10px;
+		background-color:green;
+
+	}
+	div #n3{
+		background-color:red;
+		margin: 10px 0 0 0;
+	}
+</style>
+<body>
+	<br><br>
+ 	<div class="container col-lg-5">
+ 		<h2>ДОБАВЛЕНИЕ КОММЕНТАРИЯ</h2>
+ 		<form id = "form1">
+ 			<div class="form-group" id="form_input">
+ 				<label for="name">Имя</label>
+ 				<input type="text"  class="form-control" id="name" maxlength="30" placeholder="Введите имя и отчество" required >
+
+				<label for="email">Email</label>
+ 				<input type="text" class="form-control" id="email" placeholder="Ваш email" required >
+
+				<label for="number">Телефон</label>
+ 				<input type="text" class="form-control"  id="number" placeholder="Ваш телефон" required >
+ 			</div>
+
+ 			<div class="form-group">
+ 				<label for="intro">Сообщение</label>
+ 				<textarea id="intro" maxlength="400" class="form-control" placeholder="Введите сообщение" required onkeyup="countChar(this)"></textarea>
+			</div>
+			<div  id="num" ></div>
+			<br>
+			<div id="text" class="text-danger"></div>
+			<button type="button" onclick="newElement()" name="send" id="send"
+			class="btn btn-primary">Отправить</button>
+ 		</form>
+ 	<hr>
+ 	<h4>Коментарии</h4>
+ 	<div id="articles">
+ 		<div id ="n2">
+ 			
+ 		</div>
+ 
+ 	</div>
+ </div>
+
+<script>
+	var div = document.querySelector('#articles');
+	div.addEventListener('click', e => {
+    	div.removeChild(e.target);
+})
+
+ function newElement() {
+ 	var radios = document.getElementsByName('type');
+ 	for (var i = 0, length = radios.length; i < length; i++) {
+ 	if (radios[i].checked) {
+ 	var type = radios[i].value;
+ 		
+ 		break;
+ 		}
+ }
+ 	var div1 = document.createElement("div");
+ 	var div2 = document.createElement("div");
+ 	var div3 = document.createElement("div");
+ 	var div4 = document.createElement("div");
+
+ 	var name = document.getElementById("name").value;
+ 	var intro = document.getElementById("intro").value;
+ 	var email = document.getElementById("email").value;
+ 	var number = document.getElementById("number").value;
+
+	var a1 = document.createTextNode(name);
+	var b2 = document.createTextNode(intro);
+	var c3 = document.createTextNode(email);
+	var d4 = document.createTextNode(number);
+
+  	div1.appendChild(a1);
+  	div2.appendChild(b2);
+  	div3.appendChild(c3);
+  	div4.appendChild(d4);
+
+ 	if (name == ""){
+ 		document.getElementById("text").innerHTML = "Введите имя<br><br>";
+ 		document.getElementById("text").value = "";
+ 	}
+ 	
+  	else if (email == ""){
+  		document.getElementById("text").innerHTML = "Введите email<br><br>";
+  		document.getElementById("text").value = "";
+  	}
+ 	
+ 	else if (email.search("@") == -1){
+ 		document.getElementById("text").innerHTML = "Введите @<br><br>";
+ 		document.getElementById("text").value = "";
+ 	}
+ 	
+   	else if (number == ""){
+   		document.getElementById("text").innerHTML = "Введите номер<br><br>";
+   		document.getElementById("text").value = "";
+   	}
+ 	
+ 	else if (intro == ""){
+ 		document.getElementById("text").innerHTML = "Введите сообщение<br><br>";
+ 		document.getElementById("text").value = "";
+ 	}
+ 	else {
+ 		document.getElementById("articles").appendChild(div1); 
+ 		document.getElementById("articles").appendChild(div3);
+ 		document.getElementById("articles").appendChild(div4);
+ 		document.getElementById("articles").appendChild(div2);
+		document.getElementById("name").value = "";
+		document.getElementById("intro").value = "";
+		document.getElementById("email").value = "";
+		document.getElementById("number").value = "";
+		
+
+        }
+
+}
+ </script>
+</body>
+</html>
+
+
+	
